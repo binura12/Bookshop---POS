@@ -1,0 +1,149 @@
+h1 {
+    font-family: "Caveat Brush", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+    color: #020E08;
+    margin-top: 10px;
+    margin-left: 6.5rem;
+}
+
+h3 {
+    color: #020E08;
+    opacity: 0.5;
+    font-size: 15px;
+    margin-top: 5rem;
+    margin-left: 6.3rem;
+}
+
+label {
+    text-align: left;
+    display: block;
+    margin-top: 2rem;
+    font-size: 13px;
+    color: #020E08;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    margin-left: 7.35rem;
+}
+
+.input-field {
+    width: 300px;
+    padding-top: 10px;
+    font-size: 15px;
+    color: #020E08;
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid #868686;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    margin-left: 6.5rem;
+}
+
+.input-field::placeholder {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.input-field:focus {
+    border-bottom: 1px solid #2DA26B;
+}
+
+.password {
+    margin-top: 0;
+    padding-top: 5px;
+}
+
+.errorLbl{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 9px;
+    color: red;
+}
+
+.forgetPsw {
+    float: right;
+    font-family: "Poppins", sans-serif;
+    margin-top: 0;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 13px;
+    margin-right: 0.7rem;
+    opacity: 0.8;
+    color: #020E08;
+}
+
+.forgetPsw:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.loginBtn {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    margin-top: 40px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 13.5rem;
+    border: none;
+    background-color: #020E08;
+    color: #E0F6EC;
+    width: 100px;
+    height: 35px;
+    border-radius: 100px;
+    transition: background-color 0.2s;
+}
+
+.loginBtn:hover {
+    background-color: #2DA26B;
+}
+
+.createAcc{
+    text-align: center;
+    text-decoration: none;
+    margin-left: 6.5rem;
+    color: #020E08;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    margin-bottom: 0px;
+}
+
+.createAcc:hover{
+    color: #2DA26B;
+}
+
+hr{
+    width: 100px;
+    margin-left: 13.5rem;
+    color: #020E08;
+    opacity: 0.5;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.isActiveTxt{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    margin-left: 7rem;
+    opacity: 0.8;
+    font-size: 13px;
+}
+.changeBtn{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    margin-left: 6.5rem;
+    font-size: 13px;
+    color: #020E08;
+}
+.changeBtn:hover{
+    color: #2DA26B;
+    cursor: pointer;
+}

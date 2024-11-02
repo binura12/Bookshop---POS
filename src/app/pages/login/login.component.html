@@ -1,0 +1,16 @@
+<div class="col-8 loginBg">
+    <div class="row col-12">
+        <div class="row col-6">
+            <img src="Bookshop-bro.png" alt="Bookshop-bro" class="loginImage">
+        </div>
+        <div class="verticalDivider col-1"></div>
+        <div class="col-5 loginSection">
+            <div *ngIf="!isCashier">
+                <app-admin-login></app-admin-login>
+            </div>
+            <div *ngIf="isCashier">
+                <app-cashier-login></app-cashier-login>
+            </div>
+        </div>
+    </div>
+</div>
