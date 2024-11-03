@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { LoginComponent } from '../login.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cashier-login',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './cashier-login.component.html',
   styleUrl: './cashier-login.component.css'
 })
 export class CashierLoginComponent {
-  cashierChange(){
-    LoginComponent.isClicked = "admin";
-  }
 }
