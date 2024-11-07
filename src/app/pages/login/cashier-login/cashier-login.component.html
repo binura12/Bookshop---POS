@@ -1,13 +1,28 @@
-<h1>MSK BOOKSHOP</h1>
-<h3>Welcome To MSK Bookshop</h3>
-<label for="email">Username or Email</label>
-<input type="email" id="email" class="input-field" placeholder="Enter your username or email">
-<label for="error" class="errorLbl">your email address or username was incorrect</label>
-<label for="Password" class="password">Password</label>
-<input type="password" id="Password" class="input-field" placeholder="Enter your password">
-<label for="error" class="errorLbl">your password was incorrect</label>
-<span class="forgetPsw">Forgot Password ?</span>
-<button type="submit" class="loginBtn">Login</button>
-<hr>
-<span class="isActiveTxt">You are Login as a Cashier</span><br>
-<span class="changeBtn" routerLink="/admin-login">change</span>
+<div class="col-8 loginBg">
+    <div class="row col-12">
+        <div class="row col-6">
+            <img src="Bookshop-bro.png" alt="Bookshop-bro" class="loginImage">
+        </div>
+        <div class="verticalDivider col-1"></div>
+        <div class="col-5 loginSection">
+            <h1>MSK BOOKSHOP</h1>
+            <h3>Welcome To MSK Bookshop</h3>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" class="input-field" placeholder="Enter your email">
+            <label for="error" class="errorLbl" *ngIf="isEmailLblVisible">your email address was incorrect</label>
+
+            <label for="Password" class="password">Password</label>
+            <input type="password" id="Password" class="input-field" placeholder="Enter your password">
+            <label for="error" class="errorLbl" *ngIf="isPswLblVisible">your password was incorrect</label>
+
+            <span class="forgetPsw" routerLink="/forgot-password">Forgot Password ?</span>
+
+            <button type="submit" class="loginBtn">Login</button>
+            <hr>
+
+            <span class="isActiveTxt">You are Login as a Cashier</span><br>
+            <span class="changeBtn" routerLink="/admin-login">change</span>
+        </div>
+    </div>
+</div>

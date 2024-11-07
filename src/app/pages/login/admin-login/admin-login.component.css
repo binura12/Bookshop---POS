@@ -1,3 +1,39 @@
+.loginBg {
+    height: 500px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.40);
+    border-radius: 15px;
+
+    .loginImage {
+        width: 100%;
+        margin: auto;
+        padding: 0;
+    }
+
+    .verticalDivider {
+        align-items: center;
+        width: 2px;
+        height: 500px;
+        background-color: #2DA26B;
+        margin: 0;
+        padding: 0;
+    }
+
+    .loginSection {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+}
 h1 {
     font-family: "Caveat Brush", cursive;
     font-weight: 400;
@@ -53,12 +89,12 @@ label {
 }
 
 .password {
-    margin-top: 0;
+    margin-top: 5px;
     padding-top: 5px;
 }
 
 .errorLbl{
-    margin-top: 0;
+    margin-top: 2px;
     margin-bottom: 0;
     font-size: 9px;
     color: red;
@@ -67,7 +103,7 @@ label {
 .forgetPsw {
     float: right;
     font-family: "Poppins", sans-serif;
-    margin-top: 0;
+    margin-top: 2px;
     font-weight: 500;
     font-style: normal;
     font-size: 13px;
@@ -103,27 +139,12 @@ label {
     background-color: #2DA26B;
 }
 
-.createAcc{
-    text-align: center;
-    text-decoration: none;
-    margin-left: 6.5rem;
-    color: #020806;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-    margin-bottom: 0px;
-}
-
-.createAcc:hover{
-    color: #2DA26B;
-}
-
 hr{
     width: 100px;
     margin-left: 13.5rem;
     color: #020806;
     opacity: 0.5;
-    margin-top: 10px;
+    margin-top: 2rem;
     margin-bottom: 0;
 }
 

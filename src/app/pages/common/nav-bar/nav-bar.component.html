@@ -1,0 +1,78 @@
+<div class="col-2">
+  <!-- sidebar.component.html -->
+  <div class="sidebar" [ngClass]="{'collapsed': isCollapsed}">
+    <h2>MSK Bookshop</h2>
+    <nav class="nav-menu">
+      <!-- Profile -->
+      <div class="nav-item">
+        <div class="nav-link">
+          <i class="fas fa-user"></i>
+          <span *ngIf="!isCollapsed" routerLink="/admin-dashboard">Profile</span>
+        </div>
+      </div>
+
+      <!-- Items -->
+      <div class="nav-item">
+        <div class="nav-link">
+          <i class="fas fa-user"></i>
+          <span *ngIf="!isCollapsed" routerLink="/admin-dashboard">Items</span>
+        </div>
+      </div>
+
+      <!-- Users -->
+      <div class="nav-item">
+        <div class="nav-link" (click)="toggleSubmenu('users')">
+          <i class="fas fa-users"></i>
+          <span *ngIf="!isCollapsed">Users</span>
+          <i *ngIf="!isCollapsed" class="fas"
+            [ngClass]="{'fa-chevron-down': !submenuStates['users'], 'fa-chevron-up': submenuStates['users']}"></i>
+        </div>
+        <div class="submenu" [ngClass]="{'active': submenuStates['users']}">
+          <a routerLink="/users/admin">Admins</a>
+          <a routerLink="/users/cashiers">Cashiers</a>
+          <a routerLink="/users/employees">Employees</a>
+        </div>
+      </div>
+
+      <!-- Orders -->
+      <div class="nav-item">
+        <div class="nav-link" (click)="toggleSubmenu('orders')">
+          <i class="fas fa-shopping-cart"></i>
+          <span *ngIf="!isCollapsed">Orders</span>
+          <i *ngIf="!isCollapsed" class="fas"
+            [ngClass]="{'fa-chevron-down': !submenuStates['orders'], 'fa-chevron-up': submenuStates['orders']}"></i>
+        </div>
+        <div class="submenu" [ngClass]="{'active': submenuStates['orders']}">
+          <a routerLink="/orders/place">Place Order</a>
+          <a routerLink="/orders/history">Order History</a>
+          <a routerLink="/orders/returns">Return Orders</a>
+        </div>
+      </div>
+
+      <!-- Reports -->
+      <div class="nav-item">
+        <div class="nav-link" (click)="toggleSubmenu('reports')">
+          <i class="fas fa-chart-bar"></i>
+          <span *ngIf="!isCollapsed">Reports</span>
+          <i *ngIf="!isCollapsed" class="fas"
+            [ngClass]="{'fa-chevron-down': !submenuStates['reports'], 'fa-chevron-up': submenuStates['reports']}"></i>
+        </div>
+        <div class="submenu" [ngClass]="{'active': submenuStates['reports']}">
+          <a routerLink="/reports/employee">Employee Report</a>
+          <a routerLink="/reports/cashier">Cashier Report</a>
+          <a routerLink="/reports/sales">Sales Report</a>
+          <a routerLink="/reports/inventory">Inventory Report</a>
+        </div>
+      </div>
+    </nav>
+
+    <hr class="divider">
+
+    <div class="logout-section">
+      <button class="logout-btn" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span *ngIf="!isCollapsed">Logout</span>
+      </button>
+    </div>
+  </div>
+</div>

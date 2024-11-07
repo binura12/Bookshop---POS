@@ -1,0 +1,74 @@
+<div class="row col-12 body">
+    <div class="col-2">
+        <app-nav-bar></app-nav-bar>
+    </div>
+    <div class="col-10">
+        <div class="row">
+            <div class="profileSection">
+                <h2>User Profile</h2>
+                <div class="profile-container">
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="btn btn-edit" (click)="editProfile()">
+                            Edit Profile
+                        </button>
+                        <button class="btn btn-save" (click)="saveProfile()">
+                            Save Changes
+                        </button>
+                        <button class="btn btn-delete" (click)="deleteProfile()">
+                            Delete
+                        </button>
+                    </div>
+                
+                    <div class="profile-header">
+                        <div class="profile-id">ID: #{{adminData.id}}</div>
+                        <div class="profile-image-container">
+                            <div class="profile-image">
+                                <img src="assets/admins/IMG_2712.JPEG" alt="Profile Picture">
+                            </div>
+                            <div class="edit-badge">
+                                <button class="editImg" (click)="editImage()"><i class="bi bi-pencil-square"></i></button>
+                            </div>
+                        </div>
+                        <div class="profile-basic-info">
+                            <div class="name-value">{{adminData.username}}</div>
+                            <div class="position-value">Admin</div>
+                        </div>
+                    </div>
+                
+                    <div class="profile-details">
+                        <div class="info-group">
+                            <div class="info-label">Full Name</div>
+                            <input type="text" class="info-value full-name" [readOnly]="isEditable === false" [(ngModel)]="adminData.fullName">
+                        </div>
+                        
+                        <div class="info-group">
+                            <div class="info-label">Email</div>
+                            <input type="text" class="info-value email" [readOnly]="isEditable === false" [(ngModel)]="adminData.email">
+                        </div>
+                
+                        <div class="info-group">
+                            <div class="info-label">Age</div>
+                            <input type="text" class="info-value age" [readOnly]="isEditable === false" [(ngModel)]="adminData.age">
+                        </div>
+                
+                        <div class="info-group">
+                            <div class="info-label">Phone Number</div>
+                            <input type="text" class="info-value phone-number" [readOnly]="isEditable === false" [(ngModel)]="adminData.phoneNumber">
+                        </div>
+                
+                        <div class="info-group">
+                            <div class="info-label">Address</div>
+                            <input type="text" class="info-value address" [readOnly]="isEditable === false" [(ngModel)]="adminData.address">
+                        </div>
+                
+                        <div class="info-group">
+                            <div class="info-label">Account Created</div>
+                            <input type="text" class="info-value account-created" [readOnly]="isEditable === false" [(ngModel)]="adminData.accCreatedDate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
