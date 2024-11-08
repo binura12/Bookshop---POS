@@ -5,6 +5,7 @@ import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-pa
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { AdminComponent } from './pages/users/admin/admin.component';
 import { CashierComponent } from './pages/users/cashier/cashier.component';
+import { EmployeesComponent } from './pages/users/employees/employees.component';
 
 export const routes: Routes = [
     {
@@ -35,5 +36,9 @@ export const routes: Routes = [
     {
         path:"users/cashiers",
         component:CashierComponent
+    },
+    {
+        path:"users/employees",
+        component:EmployeesComponent
     }
 ];
