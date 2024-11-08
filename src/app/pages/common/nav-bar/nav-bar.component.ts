@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { AdminService } from '../../../admin.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -19,7 +20,7 @@ export class NavBarComponent {
     reports: false
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private adminService:AdminService) {}
 
   toggleCollapse(): void {
     this.isCollapsed = !this.isCollapsed;
@@ -42,6 +43,7 @@ export class NavBarComponent {
   }
 
   logout(): void {
+    this.adminService.setEmail("");
     this.router.navigate(['/admin-login']);
   }
 }

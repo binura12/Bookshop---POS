@@ -18,5 +18,4 @@ export class AdminService{
     getEmail(): string {
         return this.email;
     }
-
 }

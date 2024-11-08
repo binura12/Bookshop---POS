@@ -6,6 +6,7 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { AdminComponent } from './pages/users/admin/admin.component';
 import { CashierComponent } from './pages/users/cashier/cashier.component';
 import { EmployeesComponent } from './pages/users/employees/employees.component';
+import { EmailAuthGuard } from './email-auth.guard';
 
 export const routes: Routes = [
     {
@@ -23,22 +24,26 @@ export const routes: Routes = [
     },
     {
         path:"forgot-password",
-        component:ForgotPasswordComponent
+        component:ForgotPasswordComponent,
     },
     {
         path:"admin-dashboard",
-        component:AdminDashboardComponent
+        component:AdminDashboardComponent,
+        canActivate: [EmailAuthGuard]
     },
     {
         path:"users/admin",
-        component:AdminComponent
+        component:AdminComponent,
+        canActivate: [EmailAuthGuard]
     },
     {
         path:"users/cashiers",
-        component:CashierComponent
+        component:CashierComponent,
+        canActivate: [EmailAuthGuard]
     },
     {
         path:"users/employees",
-        component:EmployeesComponent
+        component:EmployeesComponent,
+        canActivate: [EmailAuthGuard]
     }
 ];
