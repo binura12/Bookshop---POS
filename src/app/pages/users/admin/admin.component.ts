@@ -13,8 +13,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent implements OnInit{
-  activeAdmins: any[] = [];
-  removedAdmins: any[] = [];
+  
+  activeAdmins: any = [];
+  removedAdmins: any = [];
 
   constructor(private http:HttpClient){}
 
