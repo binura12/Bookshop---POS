@@ -30,22 +30,22 @@ export const routes: Routes = [
     {
         path:"admin-dashboard",
         component:AdminDashboardComponent,
-        canActivate: [EmailAuthGuard]
+        // canActivate: [EmailAuthGuard]
     },
     {
         path:"users/admin",
         component:AdminComponent,
-        canActivate: [EmailAuthGuard]
+        // canActivate: [EmailAuthGuard]
     },
     {
         path:"users/cashiers",
         component:CashierComponent,
-        canActivate: [EmailAuthGuard]
+        // canActivate: [EmailAuthGuard]
     },
     {
         path:"users/employees",
         component:EmployeesComponent,
-        canActivate: [EmailAuthGuard]
+        // canActivate: [EmailAuthGuard]
     },
     {
         path:"items-manage",

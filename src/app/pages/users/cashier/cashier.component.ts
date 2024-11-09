@@ -36,7 +36,16 @@ export class CashierComponent {
     password: ""
   }
 
+  onSelectedFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      this.cashier.imagePath = "assets/cashiers/" + file.name;
+    }
+  }
+
   loadCashiers(){
+
     // Load active cashiers
     this.http.get<any[]>("http://localhost:8080/cashier/all-active-cashiers")
     .subscribe({
@@ -89,6 +98,14 @@ export class CashierComponent {
     this.activeCashiersTemp = activeCashiers;
   }
 
+  onUpdateSelectedFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      this.activeCashiersTemp.imagePath = "assets/cashiers/" + file.name;
+    }
+  }
+
   updateCashierDetails(){
     this.http.put("http://localhost:8080/cashier/update-cashier", this.activeCashiersTemp).subscribe({
       next: (Response) => {
@@ -105,7 +122,8 @@ export class CashierComponent {
     this.cashier.email = "";
     this.cashier.password = "";
     this.cashier.age = "",
-    this.cashier.phoneNumber = ""
+    this.cashier.phoneNumber = "",
+    this.cashier.imagePath = ""
   }
 
   private isPasswordStrong(password: string): boolean {
@@ -114,7 +132,6 @@ export class CashierComponent {
     const hasLowerCase = /[a-z]/.test(password);
     const hasNumbers = /\d/.test(password);
     const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
     return password.length >= minLength && hasLowerCase && hasUpperCase && hasNumbers && hasSpecialChars;
   }
 }

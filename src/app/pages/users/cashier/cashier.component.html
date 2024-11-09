@@ -101,11 +101,11 @@
                 <form class="cashier-form">
                     <div class="image-upload-container">
                         <div class="image-preview" id="imagePreview">
-                            <img id="previewImg" src="#" alt="Profile preview">
+                            <img id="previewImg" [src]="cashier.imagePath">
                         </div>
                         <label class="image-upload-label">
                             Choose Profile Image
-                            <input type="file" class="image-upload-input" id="imageUpload">
+                            <input type="file" class="image-upload-input" id="imageUpload" (change)="onSelectedFile($event)">
                         </label>
                     </div>
 
@@ -162,42 +162,42 @@
                 <div class="cashier-update-form">
                     <div class="image-upload-container">
                         <div class="image-preview" id="imagePreview">
-                            <img id="previewImg" src="#" alt="Profile preview">
+                            <img id="previewImg" [src]="activeCashiersTemp.imagePath">
                         </div>
                         <label class="image-upload-label">
                             Choose Profile Image
-                            <input type="file" class="image-upload-input" id="imageUpload">
+                            <input type="file" class="image-upload-input" id="imageUpload" (change)="onUpdateSelectedFile($event)">
                         </label>
                     </div>
 
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" id="username" name="username" [(ngModel)]="activeCashiersTemp.username">
+                        <input type="text" name="username" [(ngModel)]="activeCashiersTemp.username">
                     </div>
 
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" name="fullName" [(ngModel)]="activeCashiersTemp.fullName">
+                        <input type="text" name="fullName" [(ngModel)]="activeCashiersTemp.fullName">
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label for="age">Age</label>
-                            <input type="number" id="age" name="age" [(ngModel)]="activeCashiersTemp.age">
+                            <input type="number" name="age" [(ngModel)]="activeCashiersTemp.age">
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" [(ngModel)]="activeCashiersTemp.phoneNumber">
+                            <input type="tel" name="phone" [(ngModel)]="activeCashiersTemp.phoneNumber">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" [(ngModel)]="activeCashiersTemp.email">
+                        <input type="email" name="email" [(ngModel)]="activeCashiersTemp.email">
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input type="text" id="address" name="address" [(ngModel)]="activeCashiersTemp.address">
+                        <input type="text" name="address" [(ngModel)]="activeCashiersTemp.address">
                     </div>
                 </div>
                 <div class="modal-footer">

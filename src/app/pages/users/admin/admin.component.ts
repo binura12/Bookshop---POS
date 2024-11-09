@@ -44,6 +44,7 @@ export class AdminComponent implements OnInit {
   }
 
   loadAdmins() {
+
     // Load active admins
     this.http.get<any[]>("http://localhost:8080/admin/get-active-admins")
       .subscribe({
@@ -81,13 +82,14 @@ export class AdminComponent implements OnInit {
   }
 
   private clearFields() {
-    this.admin.fullName = "";
-    this.admin.username = "";
-    this.admin.address = "";
-    this.admin.email = "";
-    this.admin.password = "";
+    this.admin.fullName = "",
+    this.admin.username = "",
+    this.admin.address = "",
+    this.admin.email = "",
+    this.admin.password = "",
     this.admin.age = "",
-    this.admin.phoneNumber = ""
+    this.admin.phoneNumber = "",
+    this.admin.imagePath =""
   }
 
   private isPasswordStrong(password: string): boolean {
