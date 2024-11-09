@@ -80,11 +80,11 @@
                 <form class="admin-form">
                     <div class="image-upload-container">
                         <div class="image-preview" id="imagePreview">
-                            <img id="previewImg" src="#" alt="Profile preview">
+                            <img id="previewImg" [src]="imagePath">
                         </div>
                         <label class="image-upload-label">
                             Choose Profile Image
-                            <input type="file" class="image-upload-input" id="imageUpload">
+                            <input type="file" class="image-upload-input" id="imageUpload" (change)="onSelectedFile($event)">
                         </label>
                     </div>
 

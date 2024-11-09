@@ -125,7 +125,6 @@ h3{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: none;
   }
   
   .image-upload-label {

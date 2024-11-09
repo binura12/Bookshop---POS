@@ -13,53 +13,58 @@ import { Router } from '@angular/router';
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'
 })
-export class AdminDashboardComponent implements OnInit{
-  public enteredEmail:string = '';
+export class AdminDashboardComponent implements OnInit {
+  public enteredEmail: string = '';
 
-  public adminData: any={}
+  public adminData: any = {}
   isEditable = false;
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private adminService: AdminService,
-    private router:Router
-  ) {}
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.enteredEmail = this.adminService.getEmail();
     this.loadValues();
   }
 
-  loadValues(){
-    this.http.get(`http://localhost:8080/admin/search-by-email/${this.enteredEmail}`).subscribe(data=>{
+  onSelectedFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      this.adminData.imagePath = "assets/admins/" + file.name;
+    }
+  }
+
+  loadValues() {
+    this.http.get(`http://localhost:8080/admin/search-by-email/${this.enteredEmail}`).subscribe(data => {
       this.adminData = data;
-      console.log(this.adminData);
     })
   }
 
-  editProfile(){
-    this.isEditable=true    
+  editProfile() {
+    this.isEditable = true
   }
-  saveProfile(){
+
+  saveProfile() {
     this.http.put("http://localhost:8080/admin/update-admin", this.adminData).subscribe({
       next: (Response) => {
-        console.log("profile updated successfully");
+        alert("profile updated successfully");
         this.isEditable = false;
-        this.loadValues();        
+        this.loadValues();
       }
     })
   }
-  deleteProfile(){
-    if(confirm('Are you sure you want to delete your profile? This action cannot be undone.')){
-      this.http.delete(`http://localhost:8080/admin/delete-admin/${this.adminData.id}`).subscribe ({
+  deleteProfile() {
+    if (confirm('Are you sure you want to delete your profile? This action cannot be undone.')) {
+      this.http.delete(`http://localhost:8080/admin/delete-admin/${this.adminData.id}`).subscribe({
         next: (response) => {
-          console.log('profile deleted successfully');
+          alert("profile deleted successfully");
           this.router.navigate(["/admin-login"]);
         }
       })
     }
-  }
-  editImage(){
-
   }
 }

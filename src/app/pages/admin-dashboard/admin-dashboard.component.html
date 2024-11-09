@@ -19,15 +19,20 @@
                             Delete
                         </button>
                     </div>
-                
+
                     <div class="profile-header">
                         <div class="profile-id">ID: #{{adminData.id}}</div>
                         <div class="profile-image-container">
                             <div class="profile-image">
-                                <img src="assets/admins/IMG_2712.JPEG" alt="Profile Picture">
+                                <img [src]="adminData.imagePath">
                             </div>
-                            <div class="edit-badge">
-                                <button class="editImg" (click)="editImage()"><i class="bi bi-pencil-square"></i></button>
+                            <div class="file-input-wrapper">
+                                <label class="custom-button">
+                                    <svg class="edit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                    </svg>
+                                    <input type="file" class="file-input" [disabled]="!isEditable" (change)="onSelectedFile($event)">
+                                </label>
                             </div>
                         </div>
                         <div class="profile-basic-info">
@@ -35,36 +40,42 @@
                             <div class="position-value">Admin</div>
                         </div>
                     </div>
-                
+
                     <div class="profile-details">
                         <div class="info-group">
                             <div class="info-label">Full Name</div>
-                            <input type="text" class="info-value full-name" [readOnly]="isEditable === false" [(ngModel)]="adminData.fullName">
+                            <input type="text" class="info-value full-name" [readOnly]="isEditable === false"
+                                [(ngModel)]="adminData.fullName">
                         </div>
-                        
+
                         <div class="info-group">
                             <div class="info-label">Email</div>
-                            <input type="text" class="info-value email" [readOnly]="isEditable === false" [(ngModel)]="adminData.email">
+                            <input type="text" class="info-value email" [readOnly]="isEditable === false"
+                                [(ngModel)]="adminData.email">
                         </div>
-                
+
                         <div class="info-group">
                             <div class="info-label">Age</div>
-                            <input type="text" class="info-value age" [readOnly]="isEditable === false" [(ngModel)]="adminData.age">
+                            <input type="text" class="info-value age" [readOnly]="isEditable === false"
+                                [(ngModel)]="adminData.age">
                         </div>
-                
+
                         <div class="info-group">
                             <div class="info-label">Phone Number</div>
-                            <input type="text" class="info-value phone-number" [readOnly]="isEditable === false" [(ngModel)]="adminData.phoneNumber">
+                            <input type="text" class="info-value phone-number" [readOnly]="isEditable === false"
+                                [(ngModel)]="adminData.phoneNumber">
                         </div>
-                
+
                         <div class="info-group">
                             <div class="info-label">Address</div>
-                            <input type="text" class="info-value address" [readOnly]="isEditable === false" [(ngModel)]="adminData.address">
+                            <input type="text" class="info-value address" [readOnly]="isEditable === false"
+                                [(ngModel)]="adminData.address">
                         </div>
-                
+
                         <div class="info-group">
                             <div class="info-label">Account Created</div>
-                            <input type="text" class="info-value account-created" [readOnly]="isEditable === false" [(ngModel)]="adminData.accCreatedDate">
+                            <input type="text" class="info-value account-created" [readOnly]="isEditable === false"
+                                [(ngModel)]="adminData.accCreatedDate">
                         </div>
                     </div>
                 </div>

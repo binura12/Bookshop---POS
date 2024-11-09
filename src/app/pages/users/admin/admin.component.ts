@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, input, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavBarComponent } from "../../common/nav-bar/nav-bar.component";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,15 +12,24 @@ import { CommonModule } from '@angular/common';
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
 })
-export class AdminComponent implements OnInit{
-  
+export class AdminComponent implements OnInit {
   activeAdmins: any = [];
   removedAdmins: any = [];
 
-  constructor(private http:HttpClient){}
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
-      this.loadAdmins();
+    this.loadAdmins();
+  }
+
+  imagePath: string | null = null;
+
+  onSelectedFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      this.imagePath = "assets/admins/" + file.name;
+    }
   }
 
   public admin: any = {
@@ -34,35 +43,33 @@ export class AdminComponent implements OnInit{
     password: ""
   }
 
-  loadAdmins(){
+  loadAdmins() {
     // Load active admins
     this.http.get<any[]>("http://localhost:8080/admin/get-active-admins")
-    .subscribe({
-      next: (data) => {
-        this.activeAdmins = data;
-        console.log(this.activeAdmins);
-        
-      },
-      error: (error) => {
-        console.error('Error loading removed admins:', error);
-      }
-    });
+      .subscribe({
+        next: (data) => {
+          this.activeAdmins = data;
+        },
+        error: (error) => {
+          console.error('Error loading removed admins:', error);
+        }
+      });
 
     // Load removed admins
     this.http.get<any[]>("http://localhost:8080/admin/get-removed-admins")
-    .subscribe({
-      next: (data) => {
-        this.removedAdmins = data;
-        console.log(this.removedAdmins);
-      },
-      error: (error) => {
-        console.error('Error loading removed admins:', error);
-      }
-    });
+      .subscribe({
+        next: (data) => {
+          this.removedAdmins = data;
+        },
+        error: (error) => {
+          console.error('Error loading removed admins:', error);
+        }
+      });
   }
 
-  signUp(){
-    if (this.isPasswordStrong(this.admin.password)){
+  signUp() {
+    if (this.isPasswordStrong(this.admin.password)) {
+      this.admin.imagePath = this.imagePath;
       this.http.post("http://localhost:8080/admin/add-admin", this.admin).subscribe(data => {
         alert('Admin added successfully!');
         this.clearFields();
@@ -89,7 +96,6 @@ export class AdminComponent implements OnInit{
     const hasLowerCase = /[a-z]/.test(password);
     const hasNumbers = /\d/.test(password);
     const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
     return password.length >= minLength && hasLowerCase && hasUpperCase && hasNumbers && hasSpecialChars;
   }
 }

@@ -7,6 +7,7 @@ import { AdminComponent } from './pages/users/admin/admin.component';
 import { CashierComponent } from './pages/users/cashier/cashier.component';
 import { EmployeesComponent } from './pages/users/employees/employees.component';
 import { EmailAuthGuard } from './email-auth.guard';
+import { ItemsComponent } from './pages/items/items.component';
 
 export const routes: Routes = [
     {
@@ -45,5 +46,9 @@ export const routes: Routes = [
         path:"users/employees",
         component:EmployeesComponent,
         canActivate: [EmailAuthGuard]
+    },
+    {
+        path:"items-manage",
+        component:ItemsComponent
     }
 ];

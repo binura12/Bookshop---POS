@@ -15,7 +15,7 @@
       <div class="nav-item">
         <div class="nav-link">
           <i class="fas fa-user"></i>
-          <span *ngIf="!isCollapsed" routerLink="/admin-dashboard">Items</span>
+          <span *ngIf="!isCollapsed" routerLink="/items-manage">Items</span>
         </div>
       </div>
 
@@ -46,6 +46,14 @@
           <a routerLink="/orders/place">Place Order</a>
           <a routerLink="/orders/history">Order History</a>
           <a routerLink="/orders/returns">Return Orders</a>
+        </div>
+      </div>
+
+      <!-- suppliers -->
+      <div class="nav-item">
+        <div class="nav-link">
+          <i class="fas fa-user"></i>
+          <span *ngIf="!isCollapsed" routerLink="/admin-dashboard">Suppliers</span>
         </div>
       </div>
 

@@ -1,0 +1,128 @@
+h2{
+    color: #020806;
+    text-decoration: underline;
+    text-decoration-color: #2DA26B;
+    text-decoration-thickness: 2px;
+    font-family: "Poppins", sans-serif;
+    margin-top: 5px;
+    margin-left: 2rem;
+}
+button{
+    border-radius: 20px;
+    margin: 10px;
+    width: auto;
+    height: 40px;
+    background-color: white;
+    border: none;
+    color: #020806;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.40);
+}
+button:hover{
+    background-color: #0C3F27;
+    color: white;
+}
+/* .card-img-top{
+    width: 120px;
+}
+.items{
+    max-width: 730px;
+}
+.card{
+    margin: 0;
+    margin-top: 10px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.40);
+}
+.card-title{
+    font-size: 15px;
+}
+.card-text{
+    font-size: 13px;
+}
+.items{
+    display: flex;
+}
+a{
+    margin: 2px;
+} */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 0rem;
+    padding-left: 1.7rem;
+    margin-left: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-right: 0.5rem;
+    background-color: #2DA26B;
+    border-radius: 15px;
+    overflow-y: auto;
+    max-height: 570px;
+}
+
+.card {
+    width: 12rem;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.40);
+    background-color: white;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+}
+
+.card-img-top {
+    width: 120px;
+    object-fit: contain;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #020806;
+}
+
+.card-text {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+    padding: 0;
+}
+
+.button-group {
+    display: flex;
+}
+
+.btn-edit, .btn-delete {
+    width: 75px;
+    border-radius: 10px;
+    height: 30px;
+    border: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    align-items: center;
+    transition: all 0.2s ease;
+    margin-bottom: 0;
+    margin-right: 0;
+}
+
+.btn-edit {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #1976D2;
+}
+
+.btn-delete {
+    background-color: #DC3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #C82333;
+}
