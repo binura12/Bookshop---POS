@@ -37,7 +37,16 @@ export class EmployeesComponent {
     role: ""
   }
 
+  onSelectedFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      this.employee.imagePath = "assets/Employees/" + file.name;
+    }
+  }
+
   loadEmployees() {
+
     // Load active employees
     this.http.get<any[]>("http://localhost:8080/employee/all-active-employees")
       .subscribe({
@@ -84,6 +93,14 @@ export class EmployeesComponent {
 
   updateEmployee(activeEmployees: any) {
     this.activeEmployeessTemp = activeEmployees;
+  }
+
+  onUpdateSelectedFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      this.activeEmployeessTemp.imagePath = "assets/Employees/" + file.name;
+    }
   }
 
   updateEmployeeDetails() {
