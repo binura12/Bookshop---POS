@@ -1,0 +1,157 @@
+<div class="row col-12 body">
+    <div class="col-2">
+        <app-nav-bar></app-nav-bar>
+    </div>
+    <div class="col-6">
+        <h3>Supplier Management</h3>
+        <div class="table-container">
+            <div class="table-scroll">
+                <table class="supplier-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Full name</th>
+                            <th>Company</th>
+                            <th>Category</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let activeSuppliers of activeSuppliers">
+                            <td class="id-cell">{{activeSuppliers.id}}</td>
+                            <td>{{activeSuppliers.fullName}}</td>
+                            <td>{{activeSuppliers.company}}</td>
+                            <td>{{activeSuppliers.productCategory}}</td>
+                            <td>{{activeSuppliers.phoneNumber}}</td>
+                            <td class="email-cell">{{activeSuppliers.email}}</td>
+                            <td>{{activeSuppliers.address}}</td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#d63031"
+                                    class="bi bi-trash-fill" viewBox="0 0 16 16" (click)="remove(activeSuppliers.id)">
+                                    <path
+                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#2e86de"
+                                    class="bi bi-pencil-square" viewBox="0 0 16 16" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" (click)="updateSupplier(activeSuppliers)">
+                                    <path
+                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                    <path fill-rule="evenodd"
+                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                                </svg>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <h2 class="card-title">Add New Supplier</h2>
+            <form>
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter full name" [(ngModel)]="suppliers.fullName"
+                        name="fullName">
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" placeholder="Enter company name" [(ngModel)]="suppliers.company"
+                        name="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter email address" [(ngModel)]="suppliers.email"
+                        name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter phone number" [(ngModel)]="suppliers.phoneNumber"
+                        name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select class="form-select" aria-label="Default select example" name="category"
+                        [(ngModel)]="suppliers.productCategory">
+                        <option value="Books">Books</option>
+                        <option value="Stationery">Stationery</option>
+                        <option value="Magazines & Newspapers">Magazines & Newspapers</option>
+                        <option value="Educational Supplies">Educational Supplies</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" placeholder="Enter address" name="address" [(ngModel)]="suppliers.address">
+                </div>
+                <button class="add-supplier" type="submit" (click)="addSupplier()">Add Supplier</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Employee</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter full name" name="fullName"
+                        [(ngModel)]="activeSuppliersTemp.fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" placeholder="Enter company name" name="company"
+                        [(ngModel)]="activeSuppliersTemp.company" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter email address" name="email"
+                        [(ngModel)]="activeSuppliersTemp.email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter phone number"
+                        [(ngModel)]="activeSuppliersTemp.phoneNumber" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select class="form-select" aria-label="Default select example" name="category"
+                        [(ngModel)]="activeSuppliersTemp.productCategory">
+                        <option value="Books">Books</option>
+                        <option value="Stationery">Stationery</option>
+                        <option value="Magazines & Newspapers">Magazines & Newspapers</option>
+                        <option value="Educational Supplies">Educational Supplies</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" placeholder="Enter address"
+                        [(ngModel)]="activeSuppliersTemp.address">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        (click)="updateSupplierDetails()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

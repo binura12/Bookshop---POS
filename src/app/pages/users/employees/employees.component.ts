@@ -79,7 +79,7 @@ export class EmployeesComponent {
   }
 
   remove(id: any) {
-    if (confirm('Are you sure you want to delete your profile? This action cannot be undone.')) {
+    if (confirm('Are you sure you want to delete this profile? This action cannot be undone.')) {
       this.http.delete(`http://localhost:8080/employee/delete-employee/${id}`).subscribe({
         next: (response) => {
           alert('Employee delete successful!!!')

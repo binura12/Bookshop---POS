@@ -8,6 +8,7 @@ import { CashierComponent } from './pages/users/cashier/cashier.component';
 import { EmployeesComponent } from './pages/users/employees/employees.component';
 import { EmailAuthGuard } from './email-auth.guard';
 import { ItemsComponent } from './pages/items/items.component';
+import { SupplierComponent } from './pages/supplier/supplier.component';
 
 export const routes: Routes = [
     {
@@ -50,5 +51,9 @@ export const routes: Routes = [
     {
         path:"items-manage",
         component:ItemsComponent
+    },
+    {
+        path:"supplier-management",
+        component:SupplierComponent
     }
 ];

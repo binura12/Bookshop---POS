@@ -82,7 +82,7 @@ export class CashierComponent {
   }
   
   remove(id: any){    
-    if(confirm('Are you sure you want to delete your profile? This action cannot be undone.')){
+    if(confirm('Are you sure you want to delete this profile? This action cannot be undone.')){
       this.http.delete(`http://localhost:8080/cashier/delete-cashier/${id}`).subscribe ({
         next: (response) => {
           alert('Cashier delete successful!!!')
