@@ -24,7 +24,7 @@ export class SupplierComponent {
   }
 
   public suppliers:any = {
-    fullname: "",
+    fullName: "",
     company: "",
     email: "",
     phoneNumber: "",
@@ -45,7 +45,6 @@ export class SupplierComponent {
   }
 
   addSupplier(){
-    console.log('Selected Category:', this.suppliers.category);
     this.http.post("http://localhost:8080/supplier/add-supplier", this.suppliers).subscribe(data => {
       alert('Supplier added successfully!!!');
       this.clearFields();
@@ -81,11 +80,11 @@ export class SupplierComponent {
   }
 
   private clearFields() {
-    this.suppliers.fullname = "";
+    this.suppliers.fullName = "";
     this.suppliers.company = "";
     this.suppliers.email = "";
     this.suppliers.phoneNumber = "";
-    this.suppliers.category = "";
+    this.suppliers.productCategory = "";
     this.suppliers.address = ""
   }
 }
