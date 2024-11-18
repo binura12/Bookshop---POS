@@ -1,4 +1,4 @@
-h2 {
+h1 {
     color: #020806;
     text-decoration: underline;
     text-decoration-color: #2DA26B;
@@ -8,7 +8,12 @@ h2 {
     margin-left: 2rem;
 }
 
-button {
+.books,
+.Stationery,
+.Magazines-Newspapers,
+.Educational-Supplies,
+.btn-edit,
+.btn-delete {
     border-radius: 20px;
     margin: 10px;
     width: auto;
@@ -21,7 +26,10 @@ button {
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.40);
 }
 
-button:hover {
+.books:hover,
+.Stationery:hover,
+.Magazines-Newspapers:hover,
+.Educational-Supplies:hover {
     background-color: #0C3F27;
     color: white;
 }
@@ -125,7 +133,7 @@ button:hover {
     height: 680px;
 }
 
-.add-item-title {
+h2 {
     color: #333;
     font-size: 24px;
     margin-bottom: 1.5rem;

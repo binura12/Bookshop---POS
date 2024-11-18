@@ -13,6 +13,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ItemsComponent {
   activeItems:any = [];
+  ItemCategory:string = "";
+  allItems: any = [];
 
   constructor(
     private http: HttpClient
@@ -47,6 +49,7 @@ export class ItemsComponent {
     this.http.get<any[]>("http://localhost:8080/item/all-active-items")
     .subscribe({
       next: (data) => {
+        this.allItems = data;
         this.activeItems = data;
       },
       error: (error) => {
@@ -55,10 +58,22 @@ export class ItemsComponent {
     });
   }
 
+  filterByCategory(category: string){
+    this.ItemCategory = category;
+    if (category === '') {
+      this.activeItems = this.allItems;
+    } else {
+      this.activeItems = this.allItems.filter((item: any) => 
+        item.category === category
+      );
+    }
+  }
+
   addItem() {
     this.http.post("http://localhost:8080/item/add-item", this.item).subscribe(data => {
       this.loadItems();
       alert('Item added successfully!!!');
+      this.clearFields();
     });
   }
 
@@ -88,5 +103,56 @@ export class ItemsComponent {
       this.item.supplierId = selectedSupplier.id;
       this.item.supplierName = selectedSupplier.fullName;
     }
+  }
+
+  activeItemsTemp:any = {};
+
+  updateItem(activeItems: any){
+    this.activeItemsTemp = activeItems;
+  }
+
+  onUpdateImage(event: Event):void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      this.activeItemsTemp.imagePath = "assets/Items/" + file.name;
+    }
+  }
+
+  onUpdateCategoryChange(event: Event):void {
+    this.http.get<any[]>(`http://localhost:8080/supplier/suppliers-by-category/${this.activeItemsTemp.category}`)
+    .subscribe(data => {
+      this.matchSupplier = data;
+    });
+  }
+
+  onUpdateSupplierSelect(event: Event):void {
+    const selectedSupplierName = (event.target as HTMLSelectElement).value;
+    const selectedSupplier = this.matchSupplier.find(supplier => supplier.fullName === selectedSupplierName);
+
+    if (selectedSupplier) {
+      this.activeItemsTemp.supplierId = selectedSupplier.id;
+      this.activeItemsTemp.supplierName = selectedSupplier.fullName;
+    }
+  }
+
+  updateDoneItem(){
+    this.http.put("http://localhost:8080/item/update-item", this.activeItemsTemp).subscribe({
+      next: (Response) => {
+        alert("Item Updated Success !!!")
+        this.loadItems();        
+      }
+    })
+  }
+
+  private clearFields() {
+    this.item.itemName = "";
+    this.item.itemDesc = "";
+    this.item.price = "";
+    this.item.qty = "";
+    this.item.category = "";
+    this.item.supplierName = "",
+    this.item.supplierId = "",
+    this.item.imagePath = ""
   }
 }

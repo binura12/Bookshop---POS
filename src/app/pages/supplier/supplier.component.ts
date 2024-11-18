@@ -70,7 +70,6 @@ export class SupplierComponent {
   }
 
   updateSupplierDetails(){
-    console.log('Selected Category:', this.suppliers.category);
     this.http.put("http://localhost:8080/supplier/update-supplier", this.activeSuppliersTemp).subscribe({
       next: (Response) => {
         alert("Profile Updated Success !!!")
