@@ -28,6 +28,8 @@ export class PlaceOrderComponent {
   cartItems: CartItem[] = [];
   subtotal: number = 0;
   grandTotal: number = 0;
+  orderId: string = '';
+  customerName: string = '';
 
   constructor(
     private http: HttpClient
@@ -35,6 +37,16 @@ export class PlaceOrderComponent {
 
   ngOnInit() {
     this.loadItems();
+    this.generateOrderId();
+  }
+
+  generateOrderId() {
+    this.http.get('http://localhost:8080/orders/next-id', { responseType: 'text' })
+      .subscribe({
+        next: (response: string) => {
+          this.orderId = response;
+        }
+      });
   }
 
   loadItems() {
@@ -76,11 +88,21 @@ export class PlaceOrderComponent {
   }
 
   addToCart(item: any) {
+    if (item.qty === 0) {
+      alert('Item is out of stock!');
+      return;
+    }
     const existingItem = this.cartItems.find(cartItem => cartItem.itemId === item.id);
     if (existingItem) {
+      if (existingItem.qty < item.qty) {
+        alert('Item is out of stock!');
+        return;
+      }
       existingItem.qty += 1;
       existingItem.total = existingItem.qty * existingItem.price;
     } else {
+      console.log(item);
+      
       const newItem: CartItem = {
         itemId: item.id,
         itemName: item.itemName,
@@ -90,6 +112,7 @@ export class PlaceOrderComponent {
       }
       this.cartItems.push(newItem);
     }
+    item.qty -= 1;
     this.calculateTotals();
   }
 
@@ -112,10 +135,48 @@ export class PlaceOrderComponent {
   }
 
   placeOrder() {
-    console.log('Order placed:', {
-      items: this.cartItems,
-      subtotal: this.subtotal,
-      grandTotal: this.grandTotal
+    const order = {
+      orderId: this.orderId,
+      cusName: this.customerName,
+      orderItems: this.cartItems.map(item => ({
+        itemId: item.itemId,
+        itemName: item.itemName,
+        itemPrice: item.price,
+        quantity: item.qty,
+        subTotal: item.total,
+        total: item.total,
+        isReturn: false
+      })),
+      isReturn: false
+    };
+
+    const stockUpdate = this.cartItems.map(item => ({
+      itemId: item.itemId,
+      quantity: item.qty
+    }));
+
+    this.http.post('http://localhost:8080/item/update-stock', stockUpdate).subscribe({
+      next: () => {
+        this.http.post('http://localhost:8080/orders/save', order).subscribe({
+          next: (response) => {
+            alert('Order placed successfully!');
+            this.resetOrder();
+          },
+          error: (error) => {
+            alert('Error placing order!');
+            console.error('Error:', error);
+          }
+        });
+      }
     });
+    this.loadItems();
+  }
+
+  resetOrder() {
+    this.customerName = '';
+    this.cartItems = [];
+    this.subtotal = 0;
+    this.grandTotal = 0;
+    this.generateOrderId();
   }
 }
