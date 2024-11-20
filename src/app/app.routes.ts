@@ -9,6 +9,7 @@ import { EmployeesComponent } from './pages/users/employees/employees.component'
 import { EmailAuthGuard } from './email-auth.guard';
 import { ItemsComponent } from './pages/items/items.component';
 import { SupplierComponent } from './pages/supplier/supplier.component';
+import { PlaceOrderComponent } from './pages/orders/place-order/place-order.component';
 
 export const routes: Routes = [
     {
@@ -55,5 +56,9 @@ export const routes: Routes = [
     {
         path:"supplier-management",
         component:SupplierComponent
+    },
+    {
+        path:"orders/place",
+        component:PlaceOrderComponent
     }
 ];
