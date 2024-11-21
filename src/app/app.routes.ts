@@ -10,6 +10,7 @@ import { EmailAuthGuard } from './email-auth.guard';
 import { ItemsComponent } from './pages/items/items.component';
 import { SupplierComponent } from './pages/supplier/supplier.component';
 import { PlaceOrderComponent } from './pages/orders/place-order/place-order.component';
+import { OrderHistoryComponent } from './pages/orders/order-history/order-history.component';
 
 export const routes: Routes = [
     {
@@ -60,5 +61,9 @@ export const routes: Routes = [
     {
         path:"orders/place",
         component:PlaceOrderComponent
+    },
+    {
+        path:"orders/history",
+        component:OrderHistoryComponent
     }
 ];

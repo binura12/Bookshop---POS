@@ -88,21 +88,11 @@ export class PlaceOrderComponent {
   }
 
   addToCart(item: any) {
-    if (item.qty === 0) {
-      alert('Item is out of stock!');
-      return;
-    }
     const existingItem = this.cartItems.find(cartItem => cartItem.itemId === item.id);
     if (existingItem) {
-      if (existingItem.qty < item.qty) {
-        alert('Item is out of stock!');
-        return;
-      }
       existingItem.qty += 1;
       existingItem.total = existingItem.qty * existingItem.price;
     } else {
-      console.log(item);
-      
       const newItem: CartItem = {
         itemId: item.id,
         itemName: item.itemName,
@@ -116,25 +106,54 @@ export class PlaceOrderComponent {
     this.calculateTotals();
   }
 
-  updateQuantity(item: CartItem) {
-    if (item.qty < 1) {
-      item.qty = 1;
+updateQuantity(item: CartItem) {
+  if (item.qty < 1) {
+    item.qty = 1;
+  }
+  item.total = item.price * item.qty;
+  this.calculateTotals();
+}
+
+removeItem(index: any) {
+  this.cartItems.splice(index, 1);
+  this.calculateTotals();
+}
+
+calculateTotals() {
+  this.subtotal = this.cartItems.reduce((sum, item) => sum + item.total, 0);
+  this.grandTotal = this.subtotal;
+}
+
+validateOrder(): boolean {
+  if (this.cartItems.length === 0) {
+    alert('Cart is empty! Please add items to cart.');
+    return false;
+  }
+
+  if (!this.customerName?.trim()) {
+    alert('Please enter customer name.');
+    return false;
+  }
+
+  for (const cartItem of this.cartItems) {
+    const item = this.allItems.find((i: any) => i.id === cartItem.itemId);
+    if (!item) {
+      alert(`Item ${cartItem.itemName} not found in inventory!`);
+      return false;
     }
-    item.total = item.price * item.qty;
-    this.calculateTotals();
-  }
 
-  removeItem(index: any) {
-    this.cartItems.splice(index, 1);
-    this.calculateTotals();
+    if (cartItem.qty > item.qty + 1) {
+      alert(`Insufficient stock for ${cartItem.itemName}!`);
+      return false;
+    }
   }
+  return true;
+}
 
-  calculateTotals() {
-    this.subtotal = this.cartItems.reduce((sum, item) => sum + item.total, 0);
-    this.grandTotal = this.subtotal;
-  }
-
-  placeOrder() {
+placeOrder() {
+  if (!this.validateOrder()) {
+    return;
+  } else {
     const order = {
       orderId: this.orderId,
       cusName: this.customerName,
@@ -149,34 +168,41 @@ export class PlaceOrderComponent {
       })),
       isReturn: false
     };
-
+  
     const stockUpdate = this.cartItems.map(item => ({
       itemId: item.itemId,
       quantity: item.qty
     }));
-
+  
     this.http.post('http://localhost:8080/item/update-stock', stockUpdate).subscribe({
       next: () => {
         this.http.post('http://localhost:8080/orders/save', order).subscribe({
           next: (response) => {
             alert('Order placed successfully!');
             this.resetOrder();
+            this.loadItems();
           },
           error: (error) => {
             alert('Error placing order!');
             console.error('Error:', error);
+            // Rollback stock update on order save failure
+            this.http.post('http://localhost:8080/item/rollback-stock', stockUpdate).subscribe();
           }
         });
+      },
+      error: (error) => {
+        alert('Error updating stock!');
+        console.error('Error:', error);
       }
     });
-    this.loadItems();
   }
+}
 
-  resetOrder() {
-    this.customerName = '';
-    this.cartItems = [];
-    this.subtotal = 0;
-    this.grandTotal = 0;
-    this.generateOrderId();
-  }
+resetOrder() {
+  this.customerName = '';
+  this.cartItems = [];
+  this.subtotal = 0;
+  this.grandTotal = 0;
+  this.generateOrderId();
+}
 }
