@@ -9,16 +9,16 @@
             <h3>Welcome To MSK Bookshop</h3>
 
             <label for="email">Email</label>
-            <input type="email" id="email" class="input-field" placeholder="Enter your email">
-            <label for="error" class="errorLbl" *ngIf="isEmailLblVisible">your email address was incorrect</label>
+            <input type="email" id="email" class="input-field" placeholder="Enter your email" [(ngModel)]="cashier.email">
 
             <label for="Password" class="password">Password</label>
-            <input type="password" id="Password" class="input-field" placeholder="Enter your password">
-            <label for="error" class="errorLbl" *ngIf="isPswLblVisible">your password was incorrect</label>
+            <input type="password" id="Password" class="input-field" placeholder="Enter your password" [(ngModel)]="cashier.password">
+
+            <label for="error" class="errorLbl" *ngIf="isErrorLblVisible">Email or Password Incorrect</label>
 
             <span class="forgetPsw" routerLink="/forgot-password">Forgot Password ?</span>
 
-            <button type="submit" class="loginBtn">Login</button>
+            <button type="submit" class="loginBtn" (click)="login()">Login</button>
             <hr>
 
             <span class="isActiveTxt">You are Login as a Cashier</span><br>

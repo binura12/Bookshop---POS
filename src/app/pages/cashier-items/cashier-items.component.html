@@ -1,0 +1,168 @@
+<div class="row col-12 body">
+    <div class="col-2">
+        <app-cashier-nav-bar></app-cashier-nav-bar>
+    </div>
+    <div class="col-6">
+        <h1>Items-Management</h1>
+        <button class="books" style="margin-left: 2rem; width: 80px;" (click)="filterByCategory('Books')">Books</button>
+        <button class="Stationery" style="width: 120px;" (click)="filterByCategory('Stationery')">Stationery</button>
+        <button class="Magazines-Newspapers" style="width: 240px;" (click)="filterByCategory('Magazines & Newspapers')">Magazines & Newspapers</button>
+        <button class="Educational-Supplies" style="width: 190px;" (click)="filterByCategory('Educational Supplies')">Educational Supplies</button>
+        <div class="items-grid">
+            <div class="card" *ngFor="let activeItems of activeItems">
+                <div class="img-container">
+                    <img [src]="activeItems.imagePath" class="card-img-top" alt="CR Book">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{activeItems.itemName}}</h5>
+                    <p class="card-text">{{activeItems.itemDesc}}</p>
+                    <p class="card-text price">RS.{{activeItems.price}}/=<span style="float: right;">Stock:
+                            {{activeItems.qty}}</span></p>
+                    <div class="button-group">
+                        <button class="btn-edit" style="margin-left: 0px;" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" (click)="updateItem(activeItems)">Edit</button>
+                        <button class="btn-delete" (click)="deleteItem(activeItems.id)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="row">
+            <div class="add-item-section">
+                <h2 class="add-item-title">Add New Item</h2>
+                <form class="item-form">
+                    <div class="image-upload-container">
+                        <div class="image-preview" id="imagePreview">
+                            <img id="previewImg" [src]="item.imagePath">
+                        </div>
+                        <label class="image-upload-label">
+                            Choose Item Image
+                            <input type="file" class="image-upload-input" id="imageUpload"
+                                (change)="onSelectedFile($event)">
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemName">Item Name</label>
+                        <input type="text" id="itemName" name="itemName" [(ngModel)]="item.itemName">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" id="description" name="description" [(ngModel)]="item.itemDesc">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" id="price" name="price" [(ngModel)]="item.price">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="stock">Quantity</label>
+                            <input type="number" id="stock" name="stock" [(ngModel)]="item.qty">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="category">Category</label>
+                        <select class="form-select" aria-label="Default select example" name="category"
+                            [(ngModel)]="item.category" (change)="onCategoryChange($event)">
+                            <option value="Books">Books</option>
+                            <option value="Stationery">Stationery</option>
+                            <option value="Magazines & Newspapers">Magazines & Newspapers</option>
+                            <option value="Educational Supplies">Educational Supplies</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label for="supplierName">Supplier Name</label>
+                            <select class="form-select" aria-label="Default select example" name="supplierName"
+                                style="height: 28px; font-size: 12px;" [(ngModel)]="item.supplierName"
+                                (change)="onSupplierSelect($event)" required>
+                                <option *ngFor="let Supplier of matchSupplier" [value]="Supplier.fullName">
+                                    {{Supplier.fullName}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id">Supplier Id</label>
+                            <input type="text" id="id" name="id" [(ngModel)]="item.supplierId" readonly>
+                        </div>
+                        <button type="submit" class="add-item-button" (click)="addItem()">Add Item</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title fs-5" id="exampleModalLabel">Edit Item</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="image-upload-container" style="padding: 0.5rem;">
+                    <div class="image-preview" id="imagePreview">
+                        <img id="previewImg" [src]="activeItemsTemp.imagePath">
+                    </div>
+                    <label class="image-upload-label">
+                        Choose Item Image
+                        <input type="file" class="image-upload-input" id="imageUpload" (change)="onUpdateImage($event)">
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemName">Item Name</label>
+                    <input type="text" id="itemName" name="itemName" [(ngModel)]="activeItemsTemp.itemName">
+                </div>
+
+                <div class="form-group" style="margin-top: 0.5rem;">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" name="description" [(ngModel)]="activeItemsTemp.itemDesc">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group" style="margin-top: 0.5rem;">
+                        <label for="price">Price</label>
+                        <input type="number" id="price" name="price" [(ngModel)]="activeItemsTemp.price">
+                    </div>
+
+                    <div class="form-group" style="margin-top: 0.5rem;">
+                        <label for="stock">Quantity</label>
+                        <input type="number" id="stock" name="stock" [(ngModel)]="activeItemsTemp.qty">
+                    </div>
+                </div>
+                <div style="margin-top: 0.5rem;">
+                    <label for="category">Category</label>
+                    <select class="form-select" aria-label="Default select example" name="category"
+                        [(ngModel)]="activeItemsTemp.category" (change)="onUpdateCategoryChange($event)">
+                        <option value="Books">Books</option>
+                        <option value="Stationery">Stationery</option>
+                        <option value="Magazines & Newspapers">Magazines & Newspapers</option>
+                        <option value="Educational Supplies">Educational Supplies</option>
+                    </select>
+                </div>
+                <div class="form-row" style="margin-top: 0.5rem;">
+                    <div>
+                        <label for="supplierName">Supplier Name</label>
+                        <select class="form-select" aria-label="Default select example" name="supplierName"
+                            style="height: 28px; font-size: 12px;" [(ngModel)]="activeItemsTemp.supplierName"
+                            (change)="onUpdateSupplierSelect($event)" required>
+                            <option *ngFor="let supplier of matchSupplier" [value]="supplier.fullName">
+                                {{supplier.fullName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id">Supplier Id</label>
+                        <input type="text" id="id" name="id" [(ngModel)]="activeItemsTemp.supplierId" readonly>
+                    </div>
+                    <button type="submit" class="add-item-button" (click)="updateDoneItem()">Update Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,250 @@
+h1 {
+    color: #020806;
+    text-decoration: underline;
+    text-decoration-color: #2DA26B;
+    text-decoration-thickness: 2px;
+    font-family: "Poppins", sans-serif;
+    margin-top: 5px;
+    margin-left: 2rem;
+}
+
+.books,
+.Stationery,
+.Magazines-Newspapers,
+.Educational-Supplies,
+.btn-edit,
+.btn-delete {
+    border-radius: 20px;
+    margin: 10px;
+    width: auto;
+    height: 40px;
+    background-color: white;
+    border: none;
+    color: #020806;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.40);
+}
+
+.books:hover,
+.Stationery:hover,
+.Magazines-Newspapers:hover,
+.Educational-Supplies:hover {
+    background-color: #0C3F27;
+    color: white;
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem 0rem;
+    padding-left: 1.7rem;
+    margin-left: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-right: 0.5rem;
+    background-color: #2DA26B;
+    border-radius: 15px;
+    overflow-y: auto;
+    max-height: 570px;
+}
+
+.card {
+    width: 12rem;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.40);
+    background-color: white;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+}
+
+.card-img-top {
+    width: 120px;
+    object-fit: contain;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #020806;
+}
+
+.card-text {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+    padding: 0;
+}
+
+.button-group {
+    display: flex;
+}
+
+.btn-edit,
+.btn-delete {
+    width: 75px;
+    border-radius: 10px;
+    height: 30px;
+    border: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    align-items: center;
+    transition: all 0.2s ease;
+    margin-bottom: 0;
+    margin-right: 0;
+}
+
+.btn-edit {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #1976D2;
+}
+
+.btn-delete {
+    background-color: #DC3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #C82333;
+}
+
+.price {
+    margin-top: 5px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.add-item-section {
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    max-width: 470px;
+    margin: auto;
+    width: 100%;
+    margin-left: 30px;
+    height: 680px;
+}
+
+h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    margin-left: -5px;
+}
+
+.item-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.image-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.image-preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px dashed #ccc;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #f8f9fa;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-upload-label {
+    background: #646cff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.image-upload-label:hover {
+    background: #535bf2;
+}
+
+.image-upload-input {
+    display: none;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+label {
+    color: #333;
+    font-weight: 500;
+}
+
+input {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #646cff;
+}
+
+.add-item-button {
+    display: block;
+    width: 80%;
+    padding: 7px;
+    background: #646cff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-left: 8rem;
+    margin-top: 8px;
+}
+
+.add-item-button:hover {
+    background: #535bf2;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        color: #213547;
+        background-color: #ffffff;
+    }
+
+    .add-item-section {
+        background: #ffffff;
+    }
+}

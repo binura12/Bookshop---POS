@@ -1,0 +1,81 @@
+h2{
+    color: #020806;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    margin-top: 0;
+    margin-left: 1.5rem;
+    background-color: white;
+    width: 350px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.table-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    max-width: 1200px;
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-left: 25px;
+    height: 600px;
+}
+
+.table-scroll {
+    max-height: 600px;
+}
+
+.table-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.table-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 3px;
+}
+
+.returned-orders-table{
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+.returned-orders-table th{
+    background: #0C3F27;
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 16px;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.returned-orders-table td{
+    padding: 14px 16px;
+    font-size: 15px;
+    color: #444;
+    border-bottom: 1px solid #eee;
+    background: white;
+}
+
+.returned-orders-table tbody tr:hover{
+    background-color: #f8f9fa;
+}
+
+.email-cell {
+    color: #2764eb;
+}
+
+.id-cell {
+    color: #666;
+    font-family: 'Monaco', monospace;
+}

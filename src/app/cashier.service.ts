@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
     providedIn: 'root'
 })
 
-export class AdminService{
-    isAdmin: boolean = false;
+export class CashierService{
+    isCashier: boolean = false;
     private email: string = '';
 
     constructor(private http: HttpClient) {

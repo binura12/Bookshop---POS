@@ -1,0 +1,85 @@
+<div class="row col-12 body">
+    <div class="col-2">
+        <app-cashier-nav-bar></app-cashier-nav-bar>
+    </div>
+    <div class="col-10">
+        <div class="row">
+            <div class="profileSection">
+                <h2>User Profile</h2>
+                <div class="profile-container">
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="btn btn-edit" (click)="editProfile()">
+                            Edit Profile
+                        </button>
+                        <button class="btn btn-save" (click)="saveProfile()">
+                            Save Changes
+                        </button>
+                        <button class="btn btn-delete" (click)="deleteProfile()">
+                            Delete
+                        </button>
+                    </div>
+
+                    <div class="profile-header">
+                        <div class="profile-id">ID: #{{cashierData.id}}</div>
+                        <div class="profile-image-container">
+                            <div class="profile-image">
+                                <img [src]="cashierData.imagePath">
+                            </div>
+                            <div class="file-input-wrapper">
+                                <label class="custom-button">
+                                    <svg class="edit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                    </svg>
+                                    <input type="file" class="file-input" [disabled]="!isEditable" (change)="onSelectedFile($event)">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="profile-basic-info">
+                            <div class="name-value">{{cashierData.username}}</div>
+                            <div class="position-value">Cashier</div>
+                        </div>
+                    </div>
+
+                    <div class="profile-details">
+                        <div class="info-group">
+                            <div class="info-label">Full Name</div>
+                            <input type="text" class="info-value full-name" [readOnly]="isEditable === false"
+                                [(ngModel)]="cashierData.fullName">
+                        </div>
+
+                        <div class="info-group">
+                            <div class="info-label">Email</div>
+                            <input type="text" class="info-value email" [readOnly]="isEditable === false"
+                                [(ngModel)]="cashierData.email">
+                        </div>
+
+                        <div class="info-group">
+                            <div class="info-label">Age</div>
+                            <input type="text" class="info-value age" [readOnly]="isEditable === false"
+                                [(ngModel)]="cashierData.age">
+                        </div>
+
+                        <div class="info-group">
+                            <div class="info-label">Phone Number</div>
+                            <input type="text" class="info-value phone-number" [readOnly]="isEditable === false"
+                                [(ngModel)]="cashierData.phoneNumber">
+                        </div>
+
+                        <div class="info-group">
+                            <div class="info-label">Address</div>
+                            <input type="text" class="info-value address" [readOnly]="isEditable === false"
+                                [(ngModel)]="cashierData.address">
+                        </div>
+
+                        <div class="info-group">
+                            <div class="info-label">Account Created</div>
+                            <input type="text" class="info-value account-created" [readOnly]="isEditable === false"
+                                [(ngModel)]="cashierData.assignedDate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

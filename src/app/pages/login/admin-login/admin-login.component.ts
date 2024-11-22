@@ -15,7 +15,12 @@ import { AdminService } from '../../../admin.service';
 })
 export class AdminLoginComponent {
 
-  constructor(private http: HttpClient, private router: Router, private adminService:AdminService) {}
+  constructor(
+    private http: HttpClient, 
+    private router: Router, 
+    private adminService:AdminService
+  ) {}
+  
   isErrorLblVisible: boolean = false;
 
   public admin: any = {
@@ -24,9 +29,7 @@ export class AdminLoginComponent {
   }
 
   login() {
-    this.router.navigate(["/admin-dashboard"])
-    this.adminService.setEmail(this.admin.email);
-    
+    this.adminService.setEmail(this.admin.email);    
     this.http.post<boolean>("http://localhost:8080/admin/search-admin", null, {
       params: {
         email: this.admin.email,
@@ -52,5 +55,3 @@ export class AdminLoginComponent {
     this.admin.password = "";
   }
 }
-
-

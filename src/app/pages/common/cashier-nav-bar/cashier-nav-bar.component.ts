@@ -1,17 +1,17 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AdminService } from '../../../admin.service';
+import { CashierService } from '../../../cashier.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-nav-bar',
+  selector: 'app-cashier-nav-bar',
   standalone: true,
   imports: [FormsModule, CommonModule, RouterModule],
-  templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.css'
+  templateUrl: './cashier-nav-bar.component.html',
+  styleUrl: './cashier-nav-bar.component.css'
 })
-export class NavBarComponent {
+export class CashierNavBarComponent {
   isCollapsed = false;
   submenuStates: { [key: string]: boolean } = {
     profile: false,
@@ -20,7 +20,7 @@ export class NavBarComponent {
     reports: false
   };
 
-  constructor(private router: Router, private adminService:AdminService) {}
+  constructor(private router: Router, private cashierService:CashierService) {}
 
   toggleCollapse(): void {
     this.isCollapsed = !this.isCollapsed;
@@ -43,7 +43,7 @@ export class NavBarComponent {
   }
 
   logout(): void {
-    this.adminService.setEmail('');
-    this.router.navigate(['/admin-login']);
+    this.cashierService.setEmail('');
+    this.router.navigate(['/cashier-login']);
   }
 }

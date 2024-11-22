@@ -1,24 +1,24 @@
 import { Injectable } from "@angular/core";
 import { CanActivate, Router } from "@angular/router";
-import { AdminService } from "./admin.service";
+import { CashierService } from "./cashier.service";
 
 @Injectable({
     providedIn: 'root',
 })
 
-export class EmailAuthGuard implements CanActivate{
+export class CashierEmailAuthGuard implements CanActivate{
     constructor(
         private router: Router,
-        private adminservice:AdminService
+        private cashierService:CashierService
     ){}
 
     canActivate(): boolean {
-        const userEmail = this.adminservice.getEmail();
+        const userEmail = this.cashierService.getEmail();
         if (userEmail && userEmail.length > 0) {
             return true;
         }
-        this.adminservice.setEmail('');
-        this.router.navigate(['/admin-login']);
+        this.cashierService.setEmail('');
+        this.router.navigate(['/cashier-login']);
         return false;
     }
 }

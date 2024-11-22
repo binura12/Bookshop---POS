@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
   styleUrl: './admin-dashboard.component.css'
 })
 export class AdminDashboardComponent implements OnInit {
+  
   public enteredEmail: string = '';
 
   public adminData: any = {}

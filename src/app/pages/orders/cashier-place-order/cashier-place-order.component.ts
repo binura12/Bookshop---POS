@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { NavBarComponent } from "../../common/nav-bar/nav-bar.component";
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CashierNavBarComponent } from '../../common/cashier-nav-bar/cashier-nav-bar.component';
 
 interface CartItem {
   itemId: any;
@@ -14,13 +14,13 @@ interface CartItem {
 }
 
 @Component({
-  selector: 'app-place-order',
+  selector: 'app-cashier-place-order',
   standalone: true,
-  imports: [RouterLink, NavBarComponent, FormsModule, CommonModule],
-  templateUrl: './place-order.component.html',
-  styleUrl: './place-order.component.css'
+  imports: [RouterLink, CashierNavBarComponent, FormsModule, CommonModule],
+  templateUrl: './cashier-place-order.component.html',
+  styleUrl: './cashier-place-order.component.css'
 })
-export class PlaceOrderComponent {
+export class CashierPlaceOrderComponent {
   activeItems: any = [];
   ItemCategory: string = "";
   allItems: any = [];

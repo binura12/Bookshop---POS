@@ -1,0 +1,56 @@
+<div class="col-2">
+    <!-- sidebar.component.html -->
+    <div class="sidebar" [ngClass]="{'collapsed': isCollapsed}">
+      <h2>MSK Bookshop</h2>
+      <nav class="nav-menu">
+
+        <!-- Profile -->
+        <div class="nav-item">
+          <div class="nav-link">
+            <i class="fas fa-user"></i>
+            <span *ngIf="!isCollapsed" routerLink="/cashier-dashboard">Profile</span>
+          </div>
+        </div>
+  
+        <!-- Items -->
+        <div class="nav-item">
+          <div class="nav-link">
+            <i class="fas fa-user"></i>
+            <span *ngIf="!isCollapsed" routerLink="/cashier/items-manage">Items</span>
+          </div>
+        </div>
+  
+        <!-- Orders -->
+        <div class="nav-item">
+          <div class="nav-link" (click)="toggleSubmenu('orders')">
+            <i class="fas fa-shopping-cart"></i>
+            <span *ngIf="!isCollapsed">Orders</span>
+            <i *ngIf="!isCollapsed" class="fas"
+              [ngClass]="{'fa-chevron-down': !submenuStates['orders'], 'fa-chevron-up': submenuStates['orders']}"></i>
+          </div>
+          <div class="submenu" [ngClass]="{'active': submenuStates['orders']}">
+            <a routerLink="/cashier/orders/place">Place Order</a>
+            <a routerLink="/cashier/orders/history">Order History</a>
+            <a routerLink="/cashier/orders/returns">Returned Orders</a>
+          </div>
+        </div>
+  
+        <!-- suppliers -->
+        <div class="nav-item">
+          <div class="nav-link">
+            <i class="fas fa-user"></i>
+            <span *ngIf="!isCollapsed" routerLink="/cashier/supplier-management">Suppliers</span>
+          </div>
+        </div>
+      </nav>
+  
+      <hr class="divider">
+  
+      <div class="logout-section">
+        <button class="logout-btn" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          <span *ngIf="!isCollapsed">Logout</span>
+        </button>
+      </div>
+    </div>
+  </div>

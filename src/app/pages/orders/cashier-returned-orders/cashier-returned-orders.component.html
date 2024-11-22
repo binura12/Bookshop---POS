@@ -1,0 +1,32 @@
+<div class="row col-12 body">
+    <div class="col-2">
+        <app-cashier-nav-bar></app-cashier-nav-bar>
+    </div>
+    <div class="col-10">
+        <h2>Returned Orders</h2>
+        <div class="table-container">
+            <div class="table-scroll">
+                <table class="returned-orders-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer Name</th>
+                            <th>Order Date</th>
+                            <th>Order Time</th>
+                            <th>Returned Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let returnedOrders of returnedOrders">
+                            <td class="id-cell">{{returnedOrders.orderId}}</td>
+                            <td>{{returnedOrders.cusName}}</td>
+                            <td>{{returnedOrders.orderDate}}</td>
+                            <td>{{returnedOrders.orderTime}}</td>
+                            <td>{{returnedOrders.returnDate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
