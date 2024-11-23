@@ -19,6 +19,7 @@ import { CashierPlaceOrderComponent } from './pages/orders/cashier-place-order/c
 import { CashierOrderHistoryComponent } from './pages/orders/cashier-order-history/cashier-order-history.component';
 import { CashierReturnedOrdersComponent } from './pages/orders/cashier-returned-orders/cashier-returned-orders.component';
 import { CashierSupplierComponent } from './pages/cashier-supplier/cashier-supplier.component';
+import { CashierForgotPasswordComponent } from './pages/login/cashier-forgot-password/cashier-forgot-password.component';
 
 export const routes: Routes = [
     {
@@ -37,6 +38,10 @@ export const routes: Routes = [
     {
         path:"forgot-password",
         component:ForgotPasswordComponent,
+    },
+    {
+        path:"cashier-forgot-password",
+        component:CashierForgotPasswordComponent
     },
     {
         path:"admin-dashboard",

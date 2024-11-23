@@ -5,13 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-forgot-password',
+  selector: 'app-cashier-forgot-password',
   standalone: true,
   imports: [RouterLink, FormsModule, CommonModule],
-  templateUrl: './forgot-password.component.html',
-  styleUrl: './forgot-password.component.css'
+  templateUrl: './cashier-forgot-password.component.html',
+  styleUrl: './cashier-forgot-password.component.css'
 })
-export class ForgotPasswordComponent {
+export class CashierForgotPasswordComponent {
   enteredEmail: string = "";
   isEmailLblVisible: boolean = false;
   otp: string[] = ['', '', '', '', '', ''];
@@ -53,7 +53,7 @@ export class ForgotPasswordComponent {
 
   resetPassword(){
     if (this.isPasswordStrong(this.newPassword)) {
-      this.http.put<boolean>(`http://localhost:8080/admin/update-password`, null, {
+      this.http.put<boolean>(`http://localhost:8080/cashier/update-password`, null, {
         params: {
           email: this.enteredEmail,
           newPassword: this.newPassword
@@ -62,7 +62,7 @@ export class ForgotPasswordComponent {
         next: (data) => {
           if (data) {
             alert('Password updated successfully');
-            this.router.navigate(['/admin-login']);
+            this.router.navigate(['/cashier-login']);
           } else {
             alert('Failed to update password');
           }
@@ -75,7 +75,7 @@ export class ForgotPasswordComponent {
 
   verifyEmail() {
     this.isEmailLblVisible = false;
-    this.http.get<any>(`http://localhost:8080/admin/check-by-email/${this.enteredEmail}`).subscribe({
+    this.http.get<any>(`http://localhost:8080/cashier/check-by-email/${this.enteredEmail}`).subscribe({
       next: (data) => {
         if (data.exists) {
           this.otpCode = data.otp;
