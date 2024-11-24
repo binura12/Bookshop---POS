@@ -30,7 +30,6 @@ export class CashierForgotPasswordComponent {
     const inputElement = event.target as HTMLInputElement;
     this.otp[index] = inputElement.value.trim();
 
-    // Move focus to the next input field
     if (inputElement.value.length === 1 && index < 5) {
       const nextInput = document.querySelectorAll('.otp-input')[index + 1] as HTMLInputElement;
       if (nextInput) {
